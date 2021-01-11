@@ -10,6 +10,10 @@ let app = new Vue ({
   methods: {
     chooseGenre () {
       console.log(this.selectedGenre);
+      if(this.selectedGenre = "all"){
+        console.log("ciao");
+        return this.discList
+      } 
     }
   },
 
