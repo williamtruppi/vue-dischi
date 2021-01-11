@@ -5,15 +5,21 @@ let app = new Vue ({
   data: {
     discList: [],
     selectedGenre: "",
+    visible: true,
   },
 
   methods: {
     chooseGenre () {
       console.log(this.selectedGenre);
-      if(this.selectedGenre = "all"){
-        console.log("ciao");
-        return this.discList
-      } 
+      this.discList.forEach(elem => {
+        
+        if(elem.genre === this.selectedGenre){
+          elem.visible = true;
+        } else {
+          elem.visible = false;
+        }
+    
+      })
     }
   },
 
@@ -21,6 +27,9 @@ let app = new Vue ({
       axios('https://flynn.boolean.careers/exercises/api/array/music')
         .then(response => {
           this.discList = response.data.response;  
+          this.discList.forEach(elem => {
+            elem.visible = this.visible;
+          })
           console.log(this.discList)
       })
       .catch(function (error) {
