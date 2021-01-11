@@ -1,23 +1,27 @@
 let app = new Vue ({
 
-  el: ".cds-container",
+  el: "#wrapper",
 
   data: {
     discList: [],
+    selectedGenre: "",
+  },
+
+  methods: {
+    chooseGenre () {
+      console.log(this.selectedGenre);
+    }
   },
 
   mounted() {
-    for(let i = 0; i < 10; i++){
       axios('https://flynn.boolean.careers/exercises/api/array/music')
         .then(response => {
-          this.discList.push(response.data.response[i]);  
+          this.discList = response.data.response;  
+          console.log(this.discList)
       })
       .catch(function (error) {
         console.log(error);
       });
-    }
-    
-    console.log(this.discList)
   }
   
 })
