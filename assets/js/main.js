@@ -12,11 +12,14 @@ let app = new Vue ({
     chooseGenre () {
       console.log(this.selectedGenre);
       this.discList.forEach(elem => {
-        
-        if(elem.genre === this.selectedGenre){
-          elem.visible = true;
+        if(this.selectedGenre !== "All"){
+          if(elem.genre === this.selectedGenre){
+            elem.visible = true;
+          } else {
+            elem.visible = false;
+          }
         } else {
-          elem.visible = false;
+          elem.visible = true;
         }
     
       })
